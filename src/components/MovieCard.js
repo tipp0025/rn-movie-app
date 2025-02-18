@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet } from "react-native";
 import { Card, Button, Text, Dialog } from "@rneui/themed";
 import RentedContext from "../context/RentedContext";
 
@@ -21,65 +20,29 @@ const MovieCard = ({ movie, onRentConfirm }) => {
   };
 
   return (
-    <Card containerStyle={styles.card}>
-      {}
+    <Card>
       {posterUrl && (
-        <Card.Image
-          source={{ uri: posterUrl }}
-          style={styles.image}
-          resizeMode="cover"
-        />
+        <Card.Image source={{ uri: posterUrl }} resizeMode="cover" />
       )}
-      {}
       <Card.Title>{movie.title}</Card.Title>
-      <Text style={styles.text}>Release Date: {movie.release_date}</Text>
-      {}
-      <Button
-        title="Rent"
-        onPress={() => setDialogVisible(true)}
-        containerStyle={styles.buttonContainer}
-      />
+      <Text>Release Date: {movie.release_date}</Text>
+      <Button title="Rent" onPress={() => setDialogVisible(true)} />
 
-      {}
       <Dialog
         isVisible={dialogVisible}
         onBackdropPress={() => setDialogVisible(false)}
       >
         <Dialog.Title>Confirm Rental</Dialog.Title>
-        <Text style={styles.dialogText}>
+        <Text>
           Do you want to rent "{movie.title}" for {rentalPrice}?
         </Text>
         <Dialog.Actions>
-          <Button
-            title="Cancel"
-            onPress={() => setDialogVisible(false)}
-            type="clear"
-          />
+          <Button title="Cancel" onPress={() => setDialogVisible(false)} />
           <Button title="Confirm" onPress={handleConfirmRent} />
         </Dialog.Actions>
       </Dialog>
     </Card>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    marginBottom: 20,
-  },
-  image: {
-    height: 200,
-  },
-  text: {
-    marginVertical: 10,
-    textAlign: "center",
-  },
-  buttonContainer: {
-    marginVertical: 10,
-  },
-  dialogText: {
-    textAlign: "center",
-    marginBottom: 10,
-  },
-});
 
 export default MovieCard;

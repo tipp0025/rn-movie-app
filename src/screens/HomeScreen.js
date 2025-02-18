@@ -5,7 +5,7 @@ import SearchContext from "../context/SearchContext";
 import MovieCard from "../components/MovieCard";
 
 const HomeScreen = ({ navigation }) => {
-  const { movies, searchMovies, setMovies } = useContext(SearchContext);
+  const { movies, searchMovies } = useContext(SearchContext);
   const [query, setQuery] = useState("");
   const [isDialogVisible, setDialogVisible] = useState(false);
 
@@ -36,6 +36,7 @@ const HomeScreen = ({ navigation }) => {
         isVisible={isDialogVisible}
         onBackdropPress={() => setDialogVisible(false)}
       >
+        {}
         <Input placeholder="Search Movie" onChangeText={setQuery} />
         <Button
           title="Search"
