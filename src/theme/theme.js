@@ -9,6 +9,7 @@ export default {
     Text: {
       style: {
         color: "#ffffff",
+        fontSize: 16,
       },
     },
     Button: {
@@ -51,8 +52,15 @@ export default {
       imageStyle: {
         height: 200,
       },
-      titleStyle: {
-        color: "#ffffff",
+      wrapperStyle: {
+        backgroundColor: "#1E1E1E",
+      },
+      Title: {
+        style: {
+          color: "#ffffff",
+          fontSize: 18,
+          fontWeight: "bold",
+        },
       },
       textStyle: {
         marginVertical: 10,

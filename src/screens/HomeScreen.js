@@ -5,9 +5,13 @@ import SearchContext from "../context/SearchContext";
 import MovieCard from "../components/MovieCard";
 
 const HomeScreen = ({ navigation }) => {
-  const { movies, searchMovies } = useContext(SearchContext);
+  const { movies, searchMovies, setMovies } = useContext(SearchContext);
   const [query, setQuery] = useState("");
   const [isDialogVisible, setDialogVisible] = useState(false);
+
+  const handleRentConfirm = (rentedMovie) => {
+    setMovies(movies.filter((movie) => movie.id !== rentedMovie.id));
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -26,7 +30,9 @@ const HomeScreen = ({ navigation }) => {
     <View>
       <FlatList
         data={movies}
-        renderItem={({ item }) => <MovieCard movie={item} />}
+        renderItem={({ item }) => (
+          <MovieCard movie={item} onRentConfirm={handleRentConfirm} />
+        )}
         keyExtractor={(item) => item.id.toString()}
       />
 
