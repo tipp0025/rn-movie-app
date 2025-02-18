@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { FAB, Input, Button, Dialog, Icon } from "@rneui/themed";
 import SearchContext from "../context/SearchContext";
 import MovieCard from "../components/MovieCard";
@@ -27,22 +27,26 @@ const HomeScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={movies}
         renderItem={({ item }) => (
           <MovieCard movie={item} onRentConfirm={handleRentConfirm} />
         )}
         keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={styles.listContainer}
       />
 
-      <FAB title="Search" onPress={() => setDialogVisible(true)} />
+      <FAB
+        title="Search"
+        onPress={() => setDialogVisible(true)}
+        placement="right"
+      />
 
       <Dialog
         isVisible={isDialogVisible}
         onBackdropPress={() => setDialogVisible(false)}
       >
-        {}
         <Input placeholder="Search Movie" onChangeText={setQuery} />
         <Button
           title="Search"
@@ -55,5 +59,21 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: "relative",
+  },
+  listContainer: {
+    paddingBottom: 80,
+  },
+  fab: {
+    position: "absolute",
+    bottom: 16,
+    right: 16,
+    margin: 16,
+  },
+});
 
 export default HomeScreen;

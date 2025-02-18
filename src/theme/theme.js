@@ -11,6 +11,13 @@ export default {
         color: "#ffffff",
         fontSize: 16,
       },
+      h4Style: {
+        textAlign: "center",
+        padding: 15,
+        color: "black",
+        fontSize: 20,
+        fontWeight: "bold",
+      },
     },
     Button: {
       raised: true,
@@ -22,6 +29,14 @@ export default {
       },
       containerStyle: {
         marginVertical: 10,
+      },
+    },
+    FAB: {
+      containerStyle: {
+        position: "absolute",
+        bottom: 16,
+        right: 16,
+        margin: 16,
       },
     },
     Dialog: {
