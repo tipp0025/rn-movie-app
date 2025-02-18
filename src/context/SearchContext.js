@@ -19,7 +19,6 @@ export const SearchProvider = ({ children }) => {
         },
       });
       setMovies(response.data.results);
-      console.log("Movies fetched", response.data.results);
     } catch (error) {
       console.error("Error fetching movies", error);
     }

@@ -14,7 +14,7 @@ const RentedScreen = ({ navigation }) => {
       </Text>
       <FlatList
         data={rentedMovies}
-        renderItem={({ item }) => <MovieCard movie={item} />}
+        renderItem={({ item }) => <MovieCard movie={item} isRented={true} />}
         keyExtractor={(item) => item.id.toString()}
       />
     </View>

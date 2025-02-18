@@ -1,8 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Card, Button, Text, Dialog } from "@rneui/themed";
 import RentedContext from "../context/RentedContext";
+import { useNavigation } from "@react-navigation/native";
+import { color } from "@rneui/base";
 
-const MovieCard = ({ movie, onRentConfirm }) => {
+const MovieCard = ({ movie, onRentConfirm, isRented = false }) => {
+  const navigation = useNavigation();
   const { rentMovie } = useContext(RentedContext);
   const [dialogVisible, setDialogVisible] = useState(false);
 
@@ -19,28 +22,42 @@ const MovieCard = ({ movie, onRentConfirm }) => {
     }
   };
 
+  const handleWatch = () => {
+    navigation.navigate("Watch", {
+      movieId: movie.id,
+      movie: movie,
+    });
+  };
+
   return (
     <Card>
       {posterUrl && (
         <Card.Image source={{ uri: posterUrl }} resizeMode="cover" />
       )}
-      <Card.Title>{movie.title}</Card.Title>
+      <Card.Title style={{ color: "white" }}>{movie.title}</Card.Title>
       <Text>Release Date: {movie.release_date}</Text>
-      <Button title="Rent" onPress={() => setDialogVisible(true)} />
 
-      <Dialog
-        isVisible={dialogVisible}
-        onBackdropPress={() => setDialogVisible(false)}
-      >
-        <Dialog.Title>Confirm Rental</Dialog.Title>
-        <Text>
-          Do you want to rent "{movie.title}" for {rentalPrice}?
-        </Text>
-        <Dialog.Actions>
-          <Button title="Cancel" onPress={() => setDialogVisible(false)} />
-          <Button title="Confirm" onPress={handleConfirmRent} />
-        </Dialog.Actions>
-      </Dialog>
+      {isRented ? (
+        <Button title="Watch" onPress={handleWatch} color="secondary" />
+      ) : (
+        <Button title="Rent" onPress={() => setDialogVisible(true)} />
+      )}
+
+      {!isRented && (
+        <Dialog
+          isVisible={dialogVisible}
+          onBackdropPress={() => setDialogVisible(false)}
+        >
+          <Dialog.Title>Confirm Rental</Dialog.Title>
+          <Text>
+            Do you want to rent "{movie.title}" for {rentalPrice}?
+          </Text>
+          <Dialog.Actions>
+            <Button title="Cancel" onPress={() => setDialogVisible(false)} />
+            <Button title="Confirm" onPress={handleConfirmRent} />
+          </Dialog.Actions>
+        </Dialog>
+      )}
     </Card>
   );
 };
