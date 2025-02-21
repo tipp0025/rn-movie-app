@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-import { FAB, Input, Button, Dialog, Icon } from "@rneui/themed";
+import { FAB, Input, Button, Dialog, Text } from "@rneui/themed";
 import SearchContext from "../context/SearchContext";
 import MovieCard from "../components/MovieCard";
 
@@ -16,12 +16,14 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Icon
-          name="shopping-cart"
-          type="material"
-          onPress={() => navigation.navigate("Rented")}
-          containerStyle={{ marginRight: 15 }}
-        />
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text
+            style={{ color: "black", marginRight: 24 }}
+            onPress={() => navigation.navigate("Rented")}
+          >
+            Rented
+          </Text>
+        </View>
       ),
     });
   }, [navigation]);
@@ -38,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
       />
 
       <FAB
-        title="Search"
+        icon={{ name: "search", color: "white" }}
         onPress={() => setDialogVisible(true)}
         placement="right"
       />

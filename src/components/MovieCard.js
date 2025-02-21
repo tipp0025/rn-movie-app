@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Card, Button, Text, Dialog } from "@rneui/themed";
 import RentedContext from "../context/RentedContext";
 import { useNavigation } from "@react-navigation/native";
-import { color } from "@rneui/base";
 
 const MovieCard = ({ movie, onRentConfirm, isRented = false }) => {
   const navigation = useNavigation();
