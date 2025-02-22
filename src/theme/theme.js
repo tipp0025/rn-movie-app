@@ -113,23 +113,39 @@ export default {
       },
     },
     //Video Settings
-    fullscreen: {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      zIndex: 1,
-    },
-    video: {
-      width: "100%",
-      height: 300,
-      marginVertical: 20,
-    },
-    fullscreenVideo: {
-      flex: 1,
-      width: "100%",
-      height: "100%",
+    VideoScreen: {
+      container: {
+        flex: 1,
+        backgroundColor: "#1E2640",
+        padding: 16,
+      },
+      fullscreen: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+      },
+      video: {
+        width: "100%",
+        height: 300,
+        marginVertical: 20,
+      },
+      fullscreenVideo: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+      },
+      title: {
+        color: "#F3EAC0",
+        fontSize: 24,
+        textAlign: "center",
+        marginVertical: 16,
+      },
+      buttonContainer: {
+        margin: 20,
+      },
     },
   },
 };
