@@ -33,7 +33,7 @@ const MovieCard = ({ movie, onRentConfirm, isRented = false }) => {
       {posterUrl && (
         <Card.Image source={{ uri: posterUrl }} resizeMode="cover" />
       )}
-      <Card.Title style={{ color: "white" }}>{movie.title}</Card.Title>
+      <Card.Title>{movie.title}</Card.Title>
       <Text>Release Date: {movie.release_date}</Text>
 
       {isRented ? (

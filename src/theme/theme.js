@@ -19,6 +19,16 @@ export default {
         fontWeight: "bold",
       },
     },
+    Screen: {
+      container: {
+        flex: 1,
+        position: "relative",
+        backgroundColor: "#121212",
+      },
+      listContainer: {
+        paddingBottom: 80,
+      },
+    },
     Button: {
       raised: true,
       buttonStyle: {
@@ -63,29 +73,61 @@ export default {
       containerStyle: {
         marginBottom: 20,
         backgroundColor: "#1E1E1E",
+        borderRadius: 8,
+        padding: 15,
       },
       imageStyle: {
         height: 200,
+        borderRadius: 8,
       },
       wrapperStyle: {
         backgroundColor: "#1E1E1E",
       },
-      Title: {
-        style: {
-          color: "#ffffff",
-          fontSize: 18,
-          fontWeight: "bold",
-        },
+      titleStyle: {
+        color: "#ffffff",
+        fontSize: 18,
+        fontWeight: "bold",
+        marginBottom: 10,
       },
-      textStyle: {
-        marginVertical: 10,
-        textAlign: "center",
+      featuredTitleStyle: {
         color: "#ffffff",
       },
     },
     Input: {
       inputStyle: {
         color: "#ffffff",
+      },
+    },
+    VideoScreen: {
+      container: {
+        flex: 1,
+        backgroundColor: "#121212",
+      },
+      fullscreen: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+      },
+      video: {
+        width: "100%",
+        height: 300,
+        marginVertical: 20,
+      },
+      fullscreenVideo: {
+        flex: 1,
+        width: "100%",
+        height: "100%",
+      },
+      title: {
+        textAlign: "center",
+        padding: 20,
+        color: "#ffffff",
+      },
+      buttonContainer: {
+        margin: 20,
       },
     },
   },

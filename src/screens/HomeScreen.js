@@ -1,14 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
-import { FAB, Input, Button, Dialog, Text } from "@rneui/themed";
+import { View, FlatList } from "react-native";
+import { FAB, Input, Button, Dialog, Text, useTheme } from "@rneui/themed";
 import SearchContext from "../context/SearchContext";
 import MovieCard from "../components/MovieCard";
 
 const HomeScreen = ({ navigation }) => {
+  const { theme } = useTheme();
   const { movies, searchMovies, setMovies } = useContext(SearchContext);
   const [query, setQuery] = useState("");
   const [isDialogVisible, setDialogVisible] = useState(false);
-
   const handleRentConfirm = (rentedMovie) => {
     setMovies(movies.filter((movie) => movie.id !== rentedMovie.id));
   };
@@ -29,14 +29,14 @@ const HomeScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <View style={theme.components.Screen.container}>
       <FlatList
         data={movies}
         renderItem={({ item }) => (
           <MovieCard movie={item} onRentConfirm={handleRentConfirm} />
         )}
         keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={styles.listContainer}
+        contentContainerStyle={theme.components.Screen.listContainer}
       />
 
       <FAB
@@ -61,21 +61,5 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: "relative",
-  },
-  listContainer: {
-    paddingBottom: 80,
-  },
-  fab: {
-    position: "absolute",
-    bottom: 16,
-    right: 16,
-    margin: 16,
-  },
-});
 
 export default HomeScreen;

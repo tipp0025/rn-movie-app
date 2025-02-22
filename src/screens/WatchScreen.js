@@ -1,10 +1,11 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-import { Text, Button } from "@rneui/themed";
+import { View, Dimensions } from "react-native";
+import { Text, Button, useTheme } from "@rneui/themed";
 import { Video, ResizeMode } from "expo-av";
 import RentedContext from "../context/RentedContext";
 
 const WatchScreen = ({ route, navigation }) => {
+  const { theme } = useTheme();
   const { removeRentedMovie } = useContext(RentedContext);
   const { movieId, movie } = route.params;
   const [showOverlay, setShowOverlay] = useState(false);
@@ -32,11 +33,20 @@ const WatchScreen = ({ route, navigation }) => {
   };
 
   return (
-    <View style={[styles.container, isFullscreen && styles.fullscreen]}>
+    <View
+      style={[
+        theme.components.VideoScreen.container,
+        isFullscreen && theme.components.VideoScreen.fullscreen,
+      ]}
+    >
       <Video
         ref={videoRef}
         source={require("../media/sample.mp4")}
-        style={isFullscreen ? styles.fullscreenVideo : styles.video}
+        style={
+          isFullscreen
+            ? theme.components.VideoScreen.fullscreenVideo
+            : theme.components.VideoScreen.video
+        }
         useNativeControls
         resizeMode={ResizeMode.CONTAIN}
         isLooping
@@ -44,52 +54,19 @@ const WatchScreen = ({ route, navigation }) => {
       />
       {showOverlay && !isFullscreen && (
         <>
-          <Text style={styles.title}>{movie.title}</Text>
+          <Text style={theme.components.VideoScreen.title}>{movie.title}</Text>
           <Button
             title="Mark as Watched"
             onPress={() => {
               removeRentedMovie(movieId);
               navigation.navigate("Rented");
             }}
-            containerStyle={styles.buttonContainer}
+            containerStyle={theme.components.VideoScreen.buttonContainer}
           />
         </>
       )}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#121212",
-  },
-  fullscreen: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1,
-  },
-  video: {
-    width: "100%",
-    height: 300,
-    marginVertical: 20,
-  },
-  fullscreenVideo: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-  },
-  title: {
-    textAlign: "center",
-    padding: 20,
-    color: "#ffffff",
-  },
-  buttonContainer: {
-    margin: 20,
-  },
-});
 
 export default WatchScreen;
