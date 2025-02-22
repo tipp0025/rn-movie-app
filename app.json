@@ -7,6 +7,20 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "fonts": [
+      {
+        "asset": "./assets/fonts/PlayfairDisplay-Regular.ttf",
+        "family": "PlayfairDisplay_Regular"
+      },
+      {
+        "asset": "./assets/fonts/PlayfairDisplay-Medium.ttf",
+        "family": "PlayfairDisplay_Medium"
+      },
+      {
+        "asset": "./assets/fonts/PlayfairDisplay-Bold.ttf",
+        "family": "PlayfairDisplay_Bold"
+      }
+    ],
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",

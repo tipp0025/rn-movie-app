@@ -1,3 +1,5 @@
+import { fonts } from "./fonts";
+
 export default {
   lightColors: {
     primary: "#922C40",
@@ -27,6 +29,7 @@ export default {
         color: "#F3EAC0",
         fontSize: 16,
         textAlign: "center",
+        fontFamily: fonts.regular,
       },
       h4Style: {
         color: "#F3EAC0",
@@ -34,6 +37,7 @@ export default {
         fontWeight: "bold",
         textAlign: "center",
         marginBottom: 10,
+        fontFamily: fonts.bold,
       },
     },
     Dialog: {
