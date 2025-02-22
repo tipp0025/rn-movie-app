@@ -35,8 +35,8 @@ const WatchScreen = ({ route, navigation }) => {
   return (
     <View
       style={[
-        theme.components.VideoScreen.container,
-        isFullscreen && theme.components.VideoScreen.fullscreen,
+        theme.components.container,
+        isFullscreen && theme.components.fullscreen,
       ]}
     >
       <Video
@@ -44,8 +44,8 @@ const WatchScreen = ({ route, navigation }) => {
         source={require("../media/sample.mp4")}
         style={
           isFullscreen
-            ? theme.components.VideoScreen.fullscreenVideo
-            : theme.components.VideoScreen.video
+            ? theme.components.fullscreenVideo
+            : theme.components.video
         }
         useNativeControls
         resizeMode={ResizeMode.CONTAIN}
@@ -54,14 +54,14 @@ const WatchScreen = ({ route, navigation }) => {
       />
       {showOverlay && !isFullscreen && (
         <>
-          <Text style={theme.components.VideoScreen.title}>{movie.title}</Text>
+          <Text style={theme.components.title}>{movie.title}</Text>
           <Button
             title="Mark as Watched"
             onPress={() => {
               removeRentedMovie(movieId);
               navigation.navigate("Rented");
             }}
-            containerStyle={theme.components.VideoScreen.buttonContainer}
+            containerStyle={theme.components.buttonContainer}
           />
         </>
       )}

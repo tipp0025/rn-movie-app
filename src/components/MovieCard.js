@@ -37,7 +37,7 @@ const MovieCard = ({ movie, onRentConfirm, isRented = false }) => {
       <Text>Release Date: {movie.release_date}</Text>
 
       {isRented ? (
-        <Button title="Watch" onPress={handleWatch} color="secondary" />
+        <Button title="Watch" onPress={handleWatch} />
       ) : (
         <Button title="Rent" onPress={() => setDialogVisible(true)} />
       )}

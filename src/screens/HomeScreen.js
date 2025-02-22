@@ -40,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
       />
 
       <FAB
-        icon={{ name: "search", color: "white" }}
+        icon={{ name: "search", color: "#F3EAC0" }}
         onPress={() => setDialogVisible(true)}
         placement="right"
       />
