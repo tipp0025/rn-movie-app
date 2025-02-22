@@ -11,7 +11,7 @@ const RentedScreen = ({ navigation }) => {
 
   return (
     <View style={theme.components.Screen.container}>
-      <Text>
+      <Text h4>
         {rentedMovies.length} Rented Movie{rentedMovies.length !== 1 ? "s" : ""}
       </Text>
       <FlatList

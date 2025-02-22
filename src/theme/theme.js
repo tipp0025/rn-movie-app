@@ -22,6 +22,20 @@ export default {
         paddingVertical: 16,
       },
     },
+    Text: {
+      style: {
+        color: "#F3EAC0",
+        fontSize: 16,
+        textAlign: "center",
+      },
+      h4Style: {
+        color: "#F3EAC0",
+        fontSize: 24,
+        fontWeight: "bold",
+        textAlign: "center",
+        marginBottom: 10,
+      },
+    },
     Dialog: {
       containerStyle: {
         padding: 20,
@@ -52,6 +66,8 @@ export default {
       buttonStyle: {
         backgroundColor: "#1E2640",
         borderRadius: 4,
+        borderColor: "#F3EAC0",
+        borderWidth: 1,
       },
       titleStyle: {
         color: "#FFFFFF",
@@ -69,6 +85,31 @@ export default {
         borderColor: "#F3EAC0",
         borderWidth: 2,
         borderRadius: 32,
+      },
+    },
+    Card: {
+      containerStyle: {
+        backgroundColor: "#922C40",
+        borderColor: "#F3EAC0",
+        borderWidth: 1,
+        borderRadius: 8,
+        padding: 15,
+        margin: 10,
+      },
+      wrapperStyle: {
+        backgroundColor: "#922C40",
+      },
+      imageWrapperStyle: {
+        borderRadius: 8,
+        overflow: "hidden",
+        marginVertical: 8,
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      imageStyle: {
+        height: 300,
+        width: 200,
+        alignSelf: "center",
       },
     },
     //Video Settings

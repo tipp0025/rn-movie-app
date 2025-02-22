@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Card, Button, Text, Dialog } from "@rneui/themed";
+import { View } from "react-native";
+import { Card, Button, Text, Dialog, useTheme } from "@rneui/themed";
 import RentedContext from "../context/RentedContext";
 import { useNavigation } from "@react-navigation/native";
 
 const MovieCard = ({ movie, onRentConfirm, isRented = false }) => {
+  const { theme } = useTheme();
   const navigation = useNavigation();
   const { rentMovie } = useContext(RentedContext);
   const [dialogVisible, setDialogVisible] = useState(false);
@@ -30,16 +32,34 @@ const MovieCard = ({ movie, onRentConfirm, isRented = false }) => {
 
   return (
     <Card>
+      <Text h4>{movie.title}</Text>
       {posterUrl && (
-        <Card.Image source={{ uri: posterUrl }} resizeMode="cover" />
+        <View style={theme.components.Card.imageWrapperStyle}>
+          <Card.Image
+            source={{ uri: posterUrl }}
+            style={theme.components.Card.imageStyle}
+            resizeMode="stretch"
+          />
+        </View>
       )}
-      <Card.Title>{movie.title}</Card.Title>
-      <Text>Release Date: {movie.release_date}</Text>
+      <Text style={theme.components.Text.style}>
+        Release Date: {movie.release_date}
+      </Text>
 
       {isRented ? (
-        <Button title="Watch" onPress={handleWatch} />
+        <Button
+          title="Watch"
+          onPress={handleWatch}
+          raised
+          containerStyle={{ marginTop: 15 }}
+        />
       ) : (
-        <Button title="Rent" onPress={() => setDialogVisible(true)} />
+        <Button
+          title="Rent"
+          onPress={() => setDialogVisible(true)}
+          raised
+          containerStyle={{ marginTop: 15 }}
+        />
       )}
 
       {!isRented && (
