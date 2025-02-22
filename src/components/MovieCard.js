@@ -69,7 +69,7 @@ const MovieCard = ({ movie, onRentConfirm, isRented = false }) => {
         >
           <Dialog.Title>Confirm Rental</Dialog.Title>
           <Text>
-            Do you want to rent "{movie.title}" for {rentalPrice}?
+            Rent "{movie.title}" for {rentalPrice}?
           </Text>
           <Dialog.Actions>
             <Button title="Cancel" onPress={() => setDialogVisible(false)} />

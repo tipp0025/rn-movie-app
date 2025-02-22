@@ -13,6 +13,25 @@ const HomeScreen = ({ navigation }) => {
     setMovies(movies.filter((movie) => movie.id !== rentedMovie.id));
   };
 
+  // Function to display a dynamic heading
+
+  const renderHeader = () => {
+    if (movies.length === 0) {
+      return (
+        <Text style={theme.components.Text.h4Style}>
+          Tap the Icon to Search
+        </Text>
+      );
+    }
+    return (
+      <Text style={theme.components.Text.h4Style}>
+        Displaying {movies.length} {movies.length === 1 ? "Result" : "Results"}
+      </Text>
+    );
+  };
+
+  // UseEffect hook for Rented navigation
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -28,8 +47,11 @@ const HomeScreen = ({ navigation }) => {
     });
   }, [navigation]);
 
+  // HomeScreen content
+
   return (
     <View style={theme.components.Screen.container}>
+      {renderHeader()}
       <FlatList
         data={movies}
         renderItem={({ item }) => (
