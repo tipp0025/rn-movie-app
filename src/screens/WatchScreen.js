@@ -12,6 +12,8 @@ const WatchScreen = ({ route, navigation }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const videoRef = useRef(null);
 
+  // useEffect hook to handle fullscreen mode on device rotation
+
   useEffect(() => {
     const subscription = Dimensions.addEventListener("change", ({ window }) => {
       const isLandscape = window.width > window.height;
@@ -26,11 +28,15 @@ const WatchScreen = ({ route, navigation }) => {
     };
   }, []);
 
+  // Function to hide Title/button on video play
+
   const onPlaybackStatusUpdate = (status) => {
     if (status.isLoaded) {
       setShowOverlay(!status.isPlaying);
     }
   };
+
+  // WatchScreen content
 
   return (
     <View
@@ -62,6 +68,7 @@ const WatchScreen = ({ route, navigation }) => {
               navigation.navigate("Rented");
             }}
             containerStyle={theme.components.VideoScreen.buttonContainer}
+            buttonStyle={{ backgroundColor: "#922C40" }}
           />
         </>
       )}

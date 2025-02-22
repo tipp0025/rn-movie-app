@@ -116,7 +116,7 @@ export default {
         alignSelf: "center",
       },
     },
-    //Video Settings
+    //WatchScreen Settings
     VideoScreen: {
       container: {
         flex: 1,
@@ -149,6 +149,12 @@ export default {
       },
       buttonContainer: {
         margin: 20,
+      },
+      buttonStyle: {
+        backgroundColor: "#922C40",
+        borderColor: "#F3EAC0",
+        borderWidth: 1,
+        borderRadius: 4,
       },
     },
   },

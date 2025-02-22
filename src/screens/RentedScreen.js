@@ -5,9 +5,11 @@ import { Text } from "@rneui/themed";
 import RentedContext from "../context/RentedContext";
 import MovieCard from "../components/MovieCard";
 
-const RentedScreen = ({ navigation }) => {
+const RentedScreen = () => {
   const { theme } = useTheme();
   const { rentedMovies } = useContext(RentedContext);
+
+  // RentedScreen content
 
   return (
     <View style={theme.components.Screen.container}>
