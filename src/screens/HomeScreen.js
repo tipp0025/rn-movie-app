@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
       headerRight: () => (
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Text
-            style={{ color: "black", marginRight: 24 }}
+            style={{ marginRight: 24 }}
             onPress={() => navigation.navigate("Rented")}
           >
             Rented

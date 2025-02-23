@@ -179,5 +179,23 @@ export default {
         borderRadius: 4,
       },
     },
+    Header: {
+      containerStyle: {
+        backgroundColor: "#922C40",
+        borderBottomWidth: 1,
+        borderBottomColor: "#F3EAC0",
+      },
+      centerComponentStyle: {
+        color: "#F3EAC0",
+        fontSize: 20,
+        fontFamily: fonts.bold,
+      },
+      rightComponentStyle: {
+        color: "#F3EAC0",
+        fontSize: 16,
+        fontFamily: fonts.regular,
+        marginRight: 10,
+      },
+    },
   },
 };
