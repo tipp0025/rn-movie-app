@@ -88,26 +88,33 @@ const MovieCard = ({ movie, onRentConfirm, isRented = false }) => {
           }}
         >
           <Dialog.Title>Confirm Rental</Dialog.Title>
-          {error ? (
-            <Text
-              style={{ color: "white", textAlign: "center", marginBottom: 10 }}
-            >
-              {error}
-            </Text>
-          ) : (
-            <Text>
-              Rent "{movie.title}" for {rentalPrice}?
-            </Text>
-          )}
-          <Dialog.Actions>
+          <View style={theme.components.Dialog.contentStyle}>
+            {error ? (
+              <Text style={theme.components.Dialog.contentTextStyle}>
+                {error}
+              </Text>
+            ) : (
+              <Text style={theme.components.Dialog.contentTextStyle}>
+                Rent "{movie.title}" for {rentalPrice}?
+              </Text>
+            )}
+          </View>
+          <Dialog.Actions style={theme.components.Dialog.actionsContainerStyle}>
+            {!error && (
+              <Button
+                title="Confirm"
+                onPress={handleConfirmRent}
+                buttonStyle={[theme.components.Dialog.dialogButtonStyle]}
+              />
+            )}
             <Button
               title="Cancel"
               onPress={() => {
                 setDialogVisible(false);
                 setError("");
               }}
+              buttonStyle={[theme.components.Dialog.dialogButtonStyle]}
             />
-            {!error && <Button title="Confirm" onPress={handleConfirmRent} />}
           </Dialog.Actions>
         </Dialog>
       )}

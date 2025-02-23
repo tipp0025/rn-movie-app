@@ -45,6 +45,18 @@ export default {
         padding: 20,
         borderRadius: 8,
       },
+      contentStyle: {
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 15,
+        marginVertical: 10,
+      },
+      contentTextStyle: {
+        color: "#F3EAC0",
+        textAlign: "center",
+        fontSize: 16,
+        marginBottom: 15,
+      },
       titleStyle: {
         color: "#ffffff",
         fontSize: 18,
@@ -55,6 +67,16 @@ export default {
       },
       dividerStyle: {
         marginVertical: 10,
+      },
+      actionsContainerStyle: {
+        padding: 8,
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        gap: 8,
+      },
+      dialogButtonStyle: {
+        minWidth: 120,
+        marginHorizontal: 5,
       },
     },
     Input: {
