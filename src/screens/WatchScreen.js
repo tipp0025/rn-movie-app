@@ -3,6 +3,7 @@ import { View, Dimensions } from "react-native";
 import { Text, Button, useTheme } from "@rneui/themed";
 import { Video, ResizeMode } from "expo-av";
 import RentedContext from "../context/RentedContext";
+import { handlePlaybackStatusUpdate } from "../components/screenComponents";
 
 const WatchScreen = ({ route, navigation }) => {
   const { theme } = useTheme();
@@ -28,14 +29,6 @@ const WatchScreen = ({ route, navigation }) => {
     };
   }, []);
 
-  // Function to hide Title/button on video play
-
-  const onPlaybackStatusUpdate = (status) => {
-    if (status.isLoaded) {
-      setShowOverlay(!status.isPlaying);
-    }
-  };
-
   // WatchScreen content
 
   return (
@@ -56,7 +49,9 @@ const WatchScreen = ({ route, navigation }) => {
         useNativeControls
         resizeMode={ResizeMode.CONTAIN}
         isLooping
-        onPlaybackStatusUpdate={onPlaybackStatusUpdate}
+        onPlaybackStatusUpdate={(status) =>
+          handlePlaybackStatusUpdate(status, setShowOverlay)
+        }
       />
       {showOverlay && !isFullscreen && (
         <>

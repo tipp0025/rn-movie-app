@@ -3,31 +3,16 @@ import { View, FlatList } from "react-native";
 import { FAB, Input, Button, Dialog, Text, useTheme } from "@rneui/themed";
 import SearchContext from "../context/SearchContext";
 import MovieCard from "../components/MovieCard";
+import { renderHeader } from "../components/screenComponents";
 
 const HomeScreen = ({ navigation }) => {
   const { theme } = useTheme();
   const { movies, searchMovies, setMovies } = useContext(SearchContext);
   const [query, setQuery] = useState("");
   const [isDialogVisible, setDialogVisible] = useState(false);
+
   const handleRentConfirm = (rentedMovie) => {
     setMovies(movies.filter((movie) => movie.id !== rentedMovie.id));
-  };
-
-  // Function to display a dynamic heading
-
-  const renderHeader = () => {
-    if (movies.length === 0) {
-      return (
-        <Text style={theme.components.Text.h4Style}>
-          Tap the Icon to Search
-        </Text>
-      );
-    }
-    return (
-      <Text style={theme.components.Text.h4Style}>
-        Displaying {movies.length} {movies.length === 1 ? "Result" : "Results"}
-      </Text>
-    );
   };
 
   // UseEffect hook for Rented navigation
@@ -51,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={theme.components.Screen.container}>
-      {renderHeader()}
+      {renderHeader(movies, theme)}
       <FlatList
         data={movies}
         renderItem={({ item }) => (
