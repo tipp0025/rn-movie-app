@@ -1,35 +1,49 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { View, Dimensions } from "react-native";
 import { Text, Button, useTheme } from "@rneui/themed";
-import { Video, ResizeMode } from "expo-av";
+import { useEvent } from "expo";
+import { useVideoPlayer, VideoView } from "expo-video";
 import RentedContext from "../context/RentedContext";
-import { handlePlaybackStatusUpdate } from "../components/screenComponents";
 
 const WatchScreen = ({ route, navigation }) => {
   const { theme } = useTheme();
   const { removeRentedMovie } = useContext(RentedContext);
   const { movieId, movie } = route.params;
+
   const [showOverlay, setShowOverlay] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const videoRef = useRef(null);
 
-  // useEffect hook to handle fullscreen mode on device rotation
+  // Create the player from a local file
+  const player = useVideoPlayer(require("../media/sample.mp4"), (p) => {
+    p.loop = true;
+    p.timeUpdateEventInterval = 1;
+    // p.play();                 // Uncomment to auto-play
+  });
 
+  // Listen to play/pause changes; show overlay when not playing
+  const { isPlaying } = useEvent(player, "playingChange", {
+    isPlaying: player.playing,
+  });
   useEffect(() => {
-    const subscription = Dimensions.addEventListener("change", ({ window }) => {
-      const isLandscape = window.width > window.height;
-      setIsFullscreen(isLandscape);
-      if (videoRef.current) {
-        videoRef.current.presentFullscreenPlayer();
+    setShowOverlay(!isPlaying);
+  }, [isPlaying]);
+
+  // Handle auto-fullscreen when rotating to landscape
+  const videoViewRef = useRef(null);
+  useEffect(() => {
+    const sub = Dimensions.addEventListener("change", ({ window }) => {
+      const landscape = window.width > window.height;
+      setIsFullscreen(landscape);
+      if (videoViewRef.current) {
+        if (landscape) {
+          videoViewRef.current.enterFullscreen?.();
+        } else {
+          videoViewRef.current.exitFullscreen?.();
+        }
       }
     });
-
-    return () => {
-      subscription.remove();
-    };
+    return () => sub.remove();
   }, []);
-
-  // WatchScreen content
 
   return (
     <View
@@ -38,21 +52,20 @@ const WatchScreen = ({ route, navigation }) => {
         isFullscreen && theme.components.VideoScreen.fullscreen,
       ]}
     >
-      <Video
-        ref={videoRef}
-        source={require("../media/sample.mp4")}
+      <VideoView
+        ref={videoViewRef}
         style={
           isFullscreen
             ? theme.components.VideoScreen.fullscreenVideo
             : theme.components.VideoScreen.video
         }
-        useNativeControls
-        resizeMode={ResizeMode.CONTAIN}
-        isLooping
-        onPlaybackStatusUpdate={(status) =>
-          handlePlaybackStatusUpdate(status, setShowOverlay)
-        }
+        player={player}
+        nativeControls
+        allowsFullscreen
+        allowsPictureInPicture
+        contentFit="contain"
       />
+
       {showOverlay && !isFullscreen && (
         <>
           <Text style={theme.components.VideoScreen.title}>{movie.title}</Text>
@@ -64,6 +77,15 @@ const WatchScreen = ({ route, navigation }) => {
             }}
             containerStyle={theme.components.VideoScreen.buttonContainer}
             buttonStyle={{ backgroundColor: "#922C40" }}
+          />
+          <Button
+            title={isPlaying ? "Pause" : "Play"}
+            onPress={() => (isPlaying ? player.pause() : player.play())}
+            containerStyle={[
+              theme.components.VideoScreen.buttonContainer,
+              { marginTop: 8 },
+            ]}
+            type="outline"
           />
         </>
       )}
