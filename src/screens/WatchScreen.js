@@ -73,7 +73,7 @@ const WatchScreen = ({ route, navigation }) => {
             title="Mark as Watched"
             onPress={() => {
               removeRentedMovie(movieId);
-              navigation.navigate("Rented");
+              navigation.goBack();
             }}
             containerStyle={theme.components.VideoScreen.buttonContainer}
             buttonStyle={{ backgroundColor: "#922C40" }}
