@@ -14,11 +14,14 @@ const WatchScreen = ({ route, navigation }) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Create the player from a local file
-  const player = useVideoPlayer(require("../media/sample.mp4"), (p) => {
-    p.loop = true;
-    p.timeUpdateEventInterval = 1;
-    // p.play();                 // Uncomment to auto-play
-  });
+  const player = useVideoPlayer(
+    require("../../assets/media/sample.mp4"),
+    (p) => {
+      p.loop = true;
+      p.timeUpdateEventInterval = 1;
+      // p.play();                 // Uncomment to auto-play
+    }
+  );
 
   // Listen to play/pause changes; show overlay when not playing
   const { isPlaying } = useEvent(player, "playingChange", {
