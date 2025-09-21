@@ -1,11 +1,10 @@
 import { Text } from "@rneui/themed";
-import React from "react";
 
 // HomeScreen Components
 
 // Function to display a dynamic heading
 
-export const renderHeader = (movies, theme) => {
+export const renderHeader = (movies, theme, query) => {
   if (movies.length === 0) {
     return (
       <Text style={theme.components.Text.h4Style}>Tap the Icon to Search</Text>

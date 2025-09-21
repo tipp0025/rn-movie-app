@@ -36,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={theme.components.Screen.container}>
-      {renderHeader(movies, theme)}
+      {renderHeader(movies, theme, query)}
       <FlatList
         data={movies}
         renderItem={({ item }) => (
