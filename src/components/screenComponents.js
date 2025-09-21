@@ -5,16 +5,20 @@ import { Text } from "@rneui/themed";
 // Function to display a dynamic heading
 
 export const renderHeader = (movies, theme, query) => {
+  const hasQuery = query?.trim().length > 0;
+
   if (movies.length === 0) {
     return (
       <Text style={theme.components.Text.h4Style}>Tap the Icon to Search</Text>
     );
   }
-  return (
-    <Text style={theme.components.Text.h4Style}>
-      Displaying {movies.length} {movies.length === 1 ? "Result" : "Results"}
-    </Text>
-  );
+  if (hasQuery) {
+    return (
+      <Text style={theme.components.Text.h4Style}>
+        Results for “{query}” ({movies.length})
+      </Text>
+    );
+  }
 };
 
 // WatchScreen Components

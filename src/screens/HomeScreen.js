@@ -9,6 +9,7 @@ const HomeScreen = ({ navigation }) => {
   const { theme } = useTheme();
   const { movies, searchMovies, setMovies } = useContext(SearchContext);
   const [query, setQuery] = useState("");
+  const [submittedQuery, setSubmittedQuery] = useState("");
   const [isDialogVisible, setDialogVisible] = useState(false);
 
   const handleRentConfirm = (rentedMovie) => {
@@ -36,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={theme.components.Screen.container}>
-      {renderHeader(movies, theme, query)}
+      {renderHeader(movies, theme, submittedQuery)}
       <FlatList
         data={movies}
         renderItem={({ item }) => (
@@ -60,8 +61,12 @@ const HomeScreen = ({ navigation }) => {
         <Button
           title="Search"
           onPress={() => {
-            searchMovies(query);
+            const q = query.trim();
+            if (!q) return;
+            searchMovies(q);
+            setSubmittedQuery(q);
             setDialogVisible(false);
+            setQuery("");
           }}
         />
       </Dialog>
