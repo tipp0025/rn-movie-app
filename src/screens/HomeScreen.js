@@ -4,6 +4,7 @@ import { FAB, Input, Button, Dialog, Text, useTheme } from "@rneui/themed";
 import SearchContext from "../context/SearchContext";
 import MovieCard from "../components/MovieCard";
 import { renderHeader } from "../components/screenComponents";
+import HomeHeader from "../components/HomeHeader";
 
 const HomeScreen = ({ navigation }) => {
   const { theme } = useTheme();
@@ -37,7 +38,13 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={theme.components.Screen.container}>
-      {renderHeader(movies, theme, submittedQuery)}
+      <HomeHeader
+        submittedQuery={submittedQuery}
+        count={movies.length}
+        onOpenSearch={() => {
+          setDialogVisible(true);
+        }}
+      />
       <FlatList
         data={movies}
         renderItem={({ item }) => (
@@ -46,13 +53,11 @@ const HomeScreen = ({ navigation }) => {
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={theme.components.Screen.listContainer}
       />
-
       <FAB
         icon={{ name: "search", color: "#F3EAC0" }}
         onPress={() => setDialogVisible(true)}
         placement="right"
       />
-
       <Dialog
         isVisible={isDialogVisible}
         onBackdropPress={() => setDialogVisible(false)}

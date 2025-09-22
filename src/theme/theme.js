@@ -31,6 +31,13 @@ export default {
         textAlign: "center",
         fontFamily: fonts.regular,
       },
+      subtitle: {
+        color: "#F3EAC0",
+        opacity: 0.9,
+        fontSize: 14,
+        textAlign: "center",
+        marginTop: 6,
+      },
       h4Style: {
         color: "#F3EAC0",
         fontSize: 24,
@@ -38,6 +45,15 @@ export default {
         textAlign: "center",
         marginBottom: 10,
         fontFamily: fonts.bold,
+      },
+    },
+    Surface: {
+      container: {
+        backgroundColor: "#1E2640",
+        borderColor: "#F3EAC0",
+        borderWidth: 1,
+        borderRadius: 12,
+        padding: 16,
       },
     },
     Dialog: {
@@ -99,18 +115,43 @@ export default {
         color: "#FFFFFF",
       },
     },
+    Badge: {
+      badgeStyle: {
+        backgroundColor: "#F3EAC0",
+        paddingHorizontal: 8,
+        borderRadius: 12,
+        minWidth: 28,
+        height: 24,
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      textStyle: {
+        color: "#1E2640",
+        fontWeight: "700",
+        fontSize: 13,
+        lineHeight: 16,
+        includeFontPadding: false,
+        textAlignVertical: "center",
+      },
+    },
     FAB: {
       containerStyle: {
         position: "absolute",
-        bottom: 16,
-        right: 16,
-        margin: 16,
+        bottom: 20,
+        right: 20,
       },
       buttonStyle: {
+        width: 56,
+        height: 56,
+        borderRadius: 28,
         backgroundColor: "#922C40",
         borderColor: "#F3EAC0",
-        borderWidth: 2,
-        borderRadius: 32,
+        borderWidth: 1,
+        shadowColor: "#000",
+        shadowOpacity: 0.25,
+        shadowRadius: 6,
+        shadowOffset: { width: 0, height: 4 },
+        elevation: 6,
       },
     },
     Card: {

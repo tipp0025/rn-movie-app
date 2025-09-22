@@ -1,5 +1,4 @@
 import "react-native-gesture-handler";
-import React from "react";
 import { ThemeProvider } from "@rneui/themed";
 import AppNavigator from "./src/navigation/AppNavigator";
 import { SearchProvider } from "./src/context/SearchContext";
