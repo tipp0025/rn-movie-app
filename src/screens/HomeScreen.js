@@ -3,7 +3,6 @@ import { View, FlatList } from "react-native";
 import { FAB, Input, Button, Dialog, Text, useTheme } from "@rneui/themed";
 import SearchContext from "../context/SearchContext";
 import MovieCard from "../components/MovieCard";
-import { renderHeader } from "../components/screenComponents";
 import HomeHeader from "../components/HomeHeader";
 
 const HomeScreen = ({ navigation }) => {
