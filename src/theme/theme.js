@@ -80,6 +80,7 @@ export default {
       },
       overlayStyle: {
         backgroundColor: "#922C40",
+        borderRadius: 16,
       },
       dividerStyle: {
         marginVertical: 10,
@@ -98,11 +99,22 @@ export default {
     Input: {
       inputStyle: {
         color: "#ffffff",
+        fontSize: 16,
+        paddingVertical: 10,
+      },
+      inputContainerStyle: {
+        borderWidth: 1,
+        borderColor: "#F3EAC0",
+        borderRadius: 12,
+        paddingHorizontal: 10,
+        backgroundColor: "rgba(255,255,255,0.04)",
+      },
+      containerStyle: {
+        paddingHorizontal: 0,
       },
       placeholderTextColor: "#CCCCCC",
-      inputContainerStyle: {
-        borderColor: "#F3EAC0",
-      },
+      leftIconContainerStyle: { marginRight: 8 },
+      rightIconContainerStyle: { marginLeft: 8 },
     },
     Button: {
       buttonStyle: {

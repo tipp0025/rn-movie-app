@@ -1,6 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { View, FlatList } from "react-native";
-import { FAB, Input, Button, Dialog, Text, useTheme } from "@rneui/themed";
+import {
+  FAB,
+  Input,
+  Button,
+  Dialog,
+  Text,
+  useTheme,
+  Icon,
+} from "@rneui/themed";
 import SearchContext from "../context/SearchContext";
 import MovieCard from "../components/MovieCard";
 import HomeHeader from "../components/HomeHeader";
@@ -61,7 +69,28 @@ const HomeScreen = ({ navigation }) => {
         isVisible={isDialogVisible}
         onBackdropPress={() => setDialogVisible(false)}
       >
-        <Input placeholder="Search Movie" onChangeText={setQuery} />
+        <Input
+          placeholder="Search movie"
+          value={query}
+          onChangeText={setQuery}
+          autoCapitalize="none"
+          autoCorrect={false}
+          returnKeyType="search"
+          onSubmitEditing={() => {
+            const q = query.trim();
+            if (!q) return;
+            searchMovies(q);
+            setSubmittedQuery(q);
+            setDialogVisible(false);
+            setQuery("");
+          }}
+          leftIcon={<Icon name="search" color="#F3EAC0" />}
+          rightIcon={
+            !!query && (
+              <Icon name="close" color="#F3EAC0" onPress={() => setQuery("")} />
+            )
+          }
+        />
         <Button
           title="Search"
           onPress={() => {
